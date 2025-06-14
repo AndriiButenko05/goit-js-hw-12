@@ -2,7 +2,8 @@ import SimpleLightbox from 'simplelightbox';
 import 'simplelightbox/dist/simple-lightbox.min.css';
 
 export const gallery = document.querySelector('.gallery');
-export const loader = document.querySelector('.loader');
+const loader = document.querySelector('.loader');
+export const loadBtn = document.querySelector('.load-btn');
 
 export function createGallery(images) {
   return images
@@ -66,3 +67,11 @@ export const lightbox = new SimpleLightbox('.gallery a', {
   captionDelay: 250,
 });
 
+export function showLoadMoreButton() {
+  loadBtn.style.display = "block"
+
+ }
+
+export function hideLoadMoreButton() {
+  loadBtn.style.display = "none"
+}
