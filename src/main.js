@@ -71,18 +71,9 @@ form.addEventListener('submit', event => {
     });
   inputText = input.value.trim();
   form.reset();
-  console.log(page);
 });
 
 loadBtn.addEventListener('click', () => {
-  if (page > totalPages) {
-    hideLoadMoreButton();
-    iziToast.show({
-      message: `We're sorry, but you've reached the end of search results.`,
-      position: 'topRight',
-      color: 'blue',
-    });
-  } else {
     getImagesByQuery(inputText, page)
     .then(response => {
       const data = response.data.hits;
@@ -102,9 +93,16 @@ loadBtn.addEventListener('click', () => {
         color: 'red',
       });
     })
-    .finally(() => {
+      .finally(() => {
+        if (page > totalPages) {
+         hideLoadMoreButton();
+    iziToast.show({
+      message: `We're sorry, but you've reached the end of search results.`,
+      position: 'topRight',
+      color: 'blue',
+    });
+      }
       hideLoader();
       page++;
     });
-  }
 });
