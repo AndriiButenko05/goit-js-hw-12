@@ -80,10 +80,9 @@ loadBtn.addEventListener('click', () => {
       const elements = createGallery(data);
       gallery.insertAdjacentHTML('beforeend', elements);
       window.scrollBy({
-        top: imgHeight,
+        top: imgHeight * 2,
         behavior: "smooth",
       });
-      page + 1;
       lightbox.refresh();
     })
     .catch(err => {
@@ -94,7 +93,7 @@ loadBtn.addEventListener('click', () => {
       });
     })
       .finally(() => {
-        if (page > totalPages) {
+        if (page + 1 > totalPages) {
          hideLoadMoreButton();
     iziToast.show({
       message: `We're sorry, but you've reached the end of search results.`,
